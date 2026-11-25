@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CertiChain - Team Contribution & Role Breakdown</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 15mm 18mm 15mm;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #1e293b;
+      line-height: 1.5;
+      font-size: 11pt;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+    }
+    .header-banner {
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .project-title {
+      font-size: 20pt;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0;
+      letter-spacing: -0.5px;
+    }
+    .project-subtitle {
+      font-size: 12pt;
+      font-weight: 600;
+      color: #2563eb;
+      margin-top: 4px;
+    }
+    .meta-tag {
+      font-size: 9pt;
+      color: #64748b;
+      text-align: right;
+    }
+    .executive-summary {
+      background: #f8fafc;
+      border-left: 4px solid #2563eb;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+      border-radius: 0 6px 6px 0;
+      font-size: 10pt;
+      color: #334155;
+    }
+    .roles-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .member-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      page-break-inside: avoid;
+    }
+    .member-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 6px;
+    }
+    .member-name {
+      font-size: 13pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .member-badge {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 8.5pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .role-title {
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 6px;
+      font-size: 10.5pt;
+    }
+    .section-label {
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 6px;
+      margin-bottom: 3px;
+      font-size: 9.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    ul {
+      margin: 4px 0 6px 0;
+      padding-left: 18px;
+    }
+    li {
+      margin-bottom: 3px;
+      font-size: 9.5pt;
+      color: #334155;
+    }
+    .viva-tip {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 4px;
+      padding: 6px 10px;
+      margin-top: 6px;
+      font-size: 8.5pt;
+      color: #166534;
+    }
+    .table-container {
+      margin-top: 25px;
+      page-break-inside: avoid;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+      margin-top: 8px;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 7px 10px;
+      text-align: left;
+    }
+    th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+    }
+    .signatures {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      page-break-inside: avoid;
+      padding-top: 15px;
+      border-top: 1px solid #cbd5e1;
+    }
+    .sig-box {
+      text-align: center;
+      width: 170px;
+      font-size: 9pt;
+      color: #475569;
+    }
+    .sig-line {
+      border-bottom: 1px solid #94a3b8;
+      height: 35px;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-banner">
+    <div>
+      <h1 class="project-title">CertiChain: Blockchain Certificate Verifier</h1>
+      <div class="project-subtitle">3rd-Year B.Tech Mini Project — Team Contribution & Individual Roles</div>
+    </div>
+    <div class="meta-tag">
+      <strong>Academic Year:</strong> 2026<br>
+      <strong>Department:</strong> Computer Science & Engineering<br>
+      <strong>Team Size:</strong> 5 Members
+    </div>
+  </div>
+
+  <div class="executive-summary">
+    <strong>Project Overview:</strong> CertiChain is an end-to-end decentralized application (dApp) developed to eliminate academic credential fraud. It securely hashes certificates client-side using SHA-256 and records the immutable proof on the Ethereum Sepolia Testnet. Below is the simplified breakdown of the five distinct roles and individual contributions made by each team member.
+  </div>
+
+  <div class="roles-grid">
+
+    <!-- Member 1 -->
+    <div class="member-card">
+      <div class="member-header">
+        <span class="member-name">Member 1: Team Lead & Smart Contract Engineer</span>
+        <span class="member-badge">Backend / Blockchain</span>
+      </div>
+      <div class="role-title">Focus: Solidity Contract Design, Access Control & Sepolia Deployment</div>
+      
+      <div class="section-label">What They Have Done (Simple Context):</div>
+      <ul>
+        <li><strong>Authored the Smart Contract:</strong> Wrote <code>CertificateVerifier.sol</code> in Solidity (^0.8.20), setting up the core data structure to map a 32-byte document hash to student details.</li>
+        <li><strong>Role-Based Access Control:</strong> Created the <code>onlyAdmin</code> security modifier ensuring that only the authorized university/institution wallet can issue or revoke credentials.</li>
+        <li><strong>Gas & Data Optimization:</strong> Kept gas costs low by storing only the 32-byte SHA-256 hash rather than the full PDF file on the Ethereum blockchain.</li>
+        <li><strong>Testnet Deployment:</strong> Deployed the smart contract onto the Ethereum Sepolia Testnet using Remix IDE and verified its contract address.</li>
+      </ul>
+      <div class="viva-tip">
+        <strong>Viva Defense Question:</strong> <em>"Why do we store only the document hash on-chain rather than the entire PDF?"</em><br>
+        <strong>Answer:</strong> Storing large files on Ethereum is prohibitively expensive in gas fees and exposes private student data. Hashing maps any file size to exactly 32 bytes, guaranteeing zero data leakage while ensuring mathematical tamper-evidence.
+      </div>
+    </div>
+
+    <!-- Member 2 -->
+    <div class="member-card">
+      <div class="member-header">
+        <span class="member-name">Member 2: Frontend & UI/UX Design Specialist</span>
+        <span class="member-badge">UI/UX / Styling</span>
+      </div>
+      <div class="role-title">Focus: Glassmorphism Interface, Layout Architecture & User Experience</div>
+      
+      <div class="section-label">What They Have Done (Simple Context):</div>
+      <ul>
+        <li><strong>Dark-Glassmorphism Interface:</strong> Designed the sleek dark user interface using deep slate tones (<code>#0f172a</code>), blur backdrops, and glowing emerald/cyan accent states in <code>style.css</code>.</li>
+        <li><strong>Dual-Tab System:</strong> Built the seamless tab navigation in <code>index.html</code> separating the <strong>Admin Issuance Portal</strong> from the <strong>Public Verification Portal</strong>.</li>
+        <li><strong>Drag-and-Drop Zones:</strong> Created interactive file dropzones allowing users to drag and drop PDFs or images effortlessly.</li>
+        <li><strong>Status Visuals:</strong> Styled glowing visual feedback cards: an emerald green <em>"Authentic & Verified"</em> badge for valid certificates and a crimson red <em>"Invalid / Tampered"</em> card for fakes.</li>
+      </ul>
+      <div class="viva-tip">
+        <strong>Viva Defense Question:</strong> <em>"How does the interface handle non-technical users and recruiters?"</em><br>
+        <strong>Answer:</strong> The public tab requires no wallet login or cryptocurrency. Anyone can simply drag a student's certificate into the browser to get an instantaneous pass/fail verification result.
+      </div>
+    </div>
+
+    <!-- Member 3 -->
+    <div class="member-card">
+      <div class="member-header">
+        <span class="member-name">Member 3: Web3 & Cryptographic Integration Engineer</span>
+        <span class="member-badge">Web3 / Cryptography</span>
+      </div>
+      <div class="role-title">Focus: Client-Side SHA-256 Hashing & MetaMask Ethers.js Connectivity</div>
+      
+      <div class="section-label">What They Have Done (Simple Context):</div>
+      <ul>
+        <li><strong>Client-Side Hashing:</strong> Implemented the browser native Web Crypto API (<code>crypto.subtle.digest("SHA-256")</code>) so certificate files are converted into unique cryptographic digests right inside the user's browser without uploading files to any external server.</li>
+        <li><strong>MetaMask Wallet Integration:</strong> Integrated Ethers.js v6 to detect MetaMask, connect user accounts, track chain changes, and enforce the Sepolia network.</li>
+        <li><strong>Smart Contract Interaction:</strong> Hooked frontend action buttons to the contract's <code>issueCertificate()</code> transaction and <code>verifyCertificate()</code> read calls.</li>
+        <li><strong>Public RPC Fallback:</strong> Configured a fallback JSON-RPC provider so employers can verify certificates on Sepolia even if they don't have MetaMask installed.</li>
+      </ul>
+      <div class="viva-tip">
+        <strong>Viva Defense Question:</strong> <em>"What is the mathematical principle preventing document forgery?"</em><br>
+        <strong>Answer:</strong> The SHA-256 Avalanche Effect. Even modifying a single letter or pixel in the certificate changes roughly 50% of the hash output, producing an immediate mismatch on the blockchain ledger.
+      </div>
+    </div>
+
+    <!-- Member 4 -->
+    <div class="member-card">
+      <div class="member-header">
+        <span class="member-name">Member 4: QA, Testing & Demo Simulation Engineer</span>
+        <span class="member-badge">Testing / Simulation</span>
+      </div>
+      <div class="role-title">Focus: "Demo Mode" Engine, Edge-Case Testing & Sample Artifact Generation</div>
+      
+      <div class="section-label">What They Have Done (Simple Context):</div>
+      <ul>
+        <li><strong>Built "Demo Mode (Without Wallet)":</strong> Created the local mock simulation engine in <code>app.js</code> using <code>localStorage</code>, allowing faculty to test the complete issuing and verification workflow without MetaMask or gas fees.</li>
+        <li><strong>One-Click Sample Loader:</strong> Added the "Load Sample Certificate" feature so evaluators can populate and test the pipeline with one click during the presentation.</li>
+        <li><strong>Tamper Testing & Edge Cases:</strong> Tested various failure modes (modifying certificate text, tampering with hash strings, re-issuing duplicate hashes, unauthorized non-admin wallets).</li>
+        <li><strong>Sample Certificate Generation:</strong> Designed <code>sample_certificate.html</code> as a realistic university diploma artifact for live evaluation demonstrations.</li>
+      </ul>
+      <div class="viva-tip">
+        <strong>Viva Defense Question:</strong> <em>"How can the project be demonstrated if the internet or MetaMask fails during the viva?"</em><br>
+        <strong>Answer:</strong> By switching on the built-in 'Demo Mode' toggle, the app runs an entirely offline cryptographic simulation displaying real-time SHA-256 calculation and verification states.
+      </div>
+    </div>
+
+    <!-- Member 5 -->
+    <div class="member-card">
+      <div class="member-header">
+        <span class="member-name">Member 5: DevOps, Deployment & Technical Documentation Lead</span>
+        <span class="member-badge">DevOps / Documentation</span>
+      </div>
+      <div class="role-title">Focus: GitHub Pages Deployment, Academic Justification & Project Report</div>
+      
+      <div class="section-label">What They Have Done (Simple Context):</div>
+      <ul>
+        <li><strong>GitHub Pages Deployment:</strong> Configured a zero-build static architecture (CDN-based Ethers.js & FontAwesome) enabling direct deployment on GitHub Pages without requiring complex build tools or npm dependencies.</li>
+        <li><strong>Authored Comprehensive README:</strong> Formulated the academic justification section explaining the limitations of traditional centralized databases vs. the decentralized tamper-proof blockchain architecture.</li>
+        <li><strong>Architecture Diagrams:</strong> Drafted the end-to-end system sequence diagrams illustrating the university-to-blockchain-to-employer verification flow.</li>
+        <li><strong>Project Report & Viva Preparation:</strong> Compiled technical specifications, test reports, and viva question-and-answer briefs for the entire team.</li>
+      </ul>
+      <div class="viva-tip">
+        <strong>Viva Defense Question:</strong> <em>"What makes this project architecture production-ready and cost-effective?"</em><br>
+        <strong>Answer:</strong> It separates the heavy file storage (kept client-side) from the verification logic (32-byte hash on Ethereum). It has zero server maintenance costs because the frontend is hosted statically and the backend runs on decentralized blockchain nodes.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Summary Table -->
+  <div class="table-container">
+    <h3 style="margin-bottom: 6px; font-size: 11pt; color: #0f172a;">Summary Contribution Matrix</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Team Member</th>
+          <th>Designated Role</th>
+          <th>Primary Technology</th>
+          <th>Key Deliverable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Member 1</strong></td>
+          <td>Smart Contract & Blockchain Lead</td>
+          <td>Solidity (^0.8.20), Remix, Sepolia</td>
+          <td><code>contracts/CertificateVerifier.sol</code></td>
+        </tr>
+        <tr>
+          <td><strong>Member 2</strong></td>
+          <td>Frontend & UI/UX Developer</td>
+          <td>HTML5, CSS3 Glassmorphism</td>
+          <td><code>index.html</code>, <code>style.css</code></td>
+        </tr>
+        <tr>
+          <td><strong>Member 3</strong></td>
+          <td>Web3 & Cryptography Specialist</td>
+          <td>Ethers.js v6, Web Crypto API</td>
+          <td>Hashing & Web3 integration in <code>app.js</code></td>
+        </tr>
+        <tr>
+          <td><strong>Member 4</strong></td>
+          <td>QA & Demo Simulation Lead</td>
+          <td>JavaScript, localStorage, QA</td>
+          <td>Demo Mode Engine & <code>sample_certificate.html</code></td>
+        </tr>
+        <tr>
+          <td><strong>Member 5</strong></td>
+          <td>DevOps & Documentation Lead</td>
+          <td>GitHub Pages, Markdown, Architecture</td>
+          <td><code>README.md</code>, CI/CD, Project Report</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Signatures Block for Academic Submission -->
+  <div class="signatures">
+    <div class="sig-box">
+      <div class="sig-line"></div>
+      <strong>Team Members</strong><br>Signatures
+    </div>
+    <div class="sig-box">
+      <div class="sig-line"></div>
+      <strong>Project Guide</strong><br>Department of CSE
+    </div>
+    <div class="sig-box">
+      <div class="sig-line"></div>
+      <strong>Head of Department</strong><br>Internal Evaluator
+    </div>
+  </div>
+
+</body>
+</html>

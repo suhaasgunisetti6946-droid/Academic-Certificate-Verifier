@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sample Academic Certificate | B.Tech Project Artifact</title>
+  <style>
+    body {
+      background: #e2e8f0;
+      font-family: 'Times New Roman', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .certificate-frame {
+      width: 800px;
+      height: 560px;
+      padding: 30px;
+      background: #ffffff;
+      border: 12px double #1e3a8a;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      position: relative;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .inner-border {
+      border: 2px solid #b45309;
+      height: 100%;
+      padding: 25px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .university-title {
+      font-size: 26px;
+      font-weight: bold;
+      color: #1e3a8a;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .sub-heading {
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: #64748b;
+      margin-top: 5px;
+    }
+    .award-text {
+      font-size: 16px;
+      font-style: italic;
+      color: #334155;
+      margin: 10px 0;
+    }
+    .student-name {
+      font-size: 28px;
+      font-weight: bold;
+      color: #0f172a;
+      border-bottom: 2px solid #cbd5e1;
+      display: inline-block;
+      padding: 0 30px 5px 30px;
+      margin: 5px 0;
+    }
+    .degree-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1d4ed8;
+      margin: 5px 0;
+    }
+    .date-info {
+      font-size: 13px;
+      color: #475569;
+    }
+    .footer-signatures {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 0 40px;
+    }
+    .signature-block {
+      border-top: 1px solid #64748b;
+      width: 180px;
+      padding-top: 5px;
+      font-size: 12px;
+      color: #334155;
+    }
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 90px;
+      color: rgba(30, 58, 138, 0.04);
+      font-weight: bold;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="certificate-frame">
+    <div class="watermark">OFFICIAL DEGREE</div>
+    <div class="inner-border">
+      <div>
+        <h1 class="university-title">National Institute of Technology</h1>
+        <div class="sub-heading">DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING</div>
+      </div>
+
+      <div>
+        <div class="award-text">This is to certify that</div>
+        <div class="student-name">Rahul Sharma</div>
+        <div class="award-text">has successfully fulfilled all requirements and is hereby awarded the degree of</div>
+        <div class="degree-name">Bachelor of Technology in Computer Science</div>
+        <div class="date-info">Conferred on the 24th Day of November, 2026 with First Class Honors</div>
+      </div>
+
+      <div class="footer-signatures">
+        <div class="signature-block">
+          <strong>Dr. S. K. Mukherjee</strong><br>Head of Department
+        </div>
+        <div class="signature-block">
+          <strong>Prof. A. N. Varma</strong><br>Dean of Academic Affairs
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

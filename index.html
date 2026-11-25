@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CertiChain | Blockchain Academic Certificate Verifier</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Ethers.js v6 CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-cube"></i>
+        </div>
+        <div>
+          <div class="brand-title">CertiChain</div>
+        </div>
+        <span class="brand-badge">Ethereum Sepolia</span>
+      </a>
+
+      <div class="nav-controls">
+        <!-- Demo Mode Toggle -->
+        <div class="demo-toggle-wrapper" title="Toggle simulation mode without requiring MetaMask">
+          <label class="switch">
+            <input type="checkbox" id="demoModeToggle">
+            <span class="slider"></span>
+          </label>
+          <label for="demoModeToggle" class="demo-toggle-label" id="demoToggleText">Demo Mode: OFF</label>
+        </div>
+
+        <!-- Network Status Indicator -->
+        <div class="network-status" id="networkPill" title="Current Ethereum Network">
+          <span class="status-dot" id="networkDot"></span>
+          <span id="networkName">Disconnected</span>
+        </div>
+
+        <!-- Wallet Connect Button -->
+        <button class="btn-wallet" id="connectWalletBtn">
+          <i class="fa-solid fa-wallet"></i>
+          <span id="walletBtnText">Connect MetaMask</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="hero-pill">
+        <i class="fa-solid fa-shield-halved"></i> Tamper-Proof Academic Credentials
+      </div>
+      <h1>Decentralized Credential <span>Verification</span></h1>
+      <p>Cryptographically anchors document SHA-256 hashes onto the Ethereum Sepolia blockchain for instant, zero-trust verification.</p>
+    </header>
+
+    <!-- Demo Mode Alert Banner (Visible when Demo Mode is ON) -->
+    <div class="demo-banner" id="demoBanner" style="display: none;">
+      <div class="demo-banner-content">
+        <i class="fa-solid fa-flask-vial fa-lg" style="color: var(--accent-cyan);"></i>
+        <div>
+          <strong>Faculty Demo Mode Active:</strong> Simulates blockchain hashing and ledger storage without MetaMask or gas fees.
+        </div>
+      </div>
+      <button class="demo-btn-sample" id="loadSampleCertBtn">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Load Sample Certificate
+      </button>
+    </div>
+
+    <!-- Tab Selector -->
+    <div class="tabs-header">
+      <button class="tab-btn active" data-tab="issueTab">
+        <i class="fa-solid fa-stamp"></i> Issue Certificate
+      </button>
+      <button class="tab-btn" data-tab="verifyTab">
+        <i class="fa-solid fa-circle-check"></i> Verify Certificate
+      </button>
+    </div>
+
+    <!-- TAB 1: ISSUE CERTIFICATE (ADMIN) -->
+    <section class="tab-content active" id="issueTab">
+      <div class="glass-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-file-signature" style="color: #818cf8;"></i> Issue Academic Credential</h2>
+          <span class="card-badge admin"><i class="fa-solid fa-lock"></i> Authorized Admin Only</span>
+        </div>
+
+        <form id="issueForm" onsubmit="return false;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="studentName"><i class="fa-solid fa-user-graduate"></i> Student Full Name</label>
+              <input type="text" id="studentName" placeholder="e.g. Rahul Sharma" required />
+            </div>
+
+            <div class="form-group">
+              <label for="courseName"><i class="fa-solid fa-award"></i> Degree / Program / Course</label>
+              <input type="text" id="courseName" placeholder="e.g. B.Tech Computer Science & Engineering" required />
+            </div>
+
+            <div class="form-group full-width">
+              <label><i class="fa-solid fa-file-pdf"></i> Certificate Document (PDF / Image)</label>
+              
+              <!-- Drag and Drop Box -->
+              <div class="dropzone" id="issueDropzone">
+                <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+                <div class="dropzone-text">Drag & drop certificate file here, or click to browse</div>
+                <div class="dropzone-hint">Supports PDF, PNG, JPG, JPEG (Client-side SHA-256 Hashing)</div>
+                <input type="file" id="issueFileInput" class="file-input" accept=".pdf,image/png,image/jpeg,image/jpg" />
+              </div>
+
+              <!-- Computed Hash Card -->
+              <div class="hash-preview-card" id="issueHashCard">
+                <div class="file-meta">
+                  <span class="file-name" id="issueFileName"><i class="fa-solid fa-file"></i> certificate.pdf</span>
+                  <span class="file-size" id="issueFileSize">1.2 MB</span>
+                </div>
+                <div class="hash-display-wrapper">
+                  <span class="hash-code" id="issueHashCode">0x0000000000000000000000000000000000000000000000000000000000000000</span>
+                  <button type="button" class="btn-copy" id="copyIssueHashBtn" title="Copy Hash to Clipboard">
+                    <i class="fa-regular fa-copy"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transaction Status Box -->
+          <div class="tx-status-box" id="issueTxStatus">
+            <div class="tx-status-msg" id="issueTxMsg">
+              <span class="spinner"></span> Confirming transaction on Sepolia...
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="button" class="btn-primary" id="btnIssueCert">
+            <i class="fa-solid fa-cube"></i> Anchor Certificate to Blockchain
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- TAB 2: VERIFY CERTIFICATE (PUBLIC) -->
+    <section class="tab-content" id="verifyTab">
+      <div class="glass-card">
+        <div class="card-header">
+          <h2><i class="fa-solid fa-magnifying-glass" style="color: var(--accent-cyan);"></i> Verify Credential Authenticity</h2>
+          <span class="card-badge public"><i class="fa-solid fa-globe"></i> Open Public Access</span>
+        </div>
+
+        <form id="verifyForm" onsubmit="return false;">
+          <div class="form-group">
+            <label><i class="fa-solid fa-file-circle-check"></i> Upload Certificate to Inspect</label>
+            
+            <!-- Verify Drag & Drop Box -->
+            <div class="dropzone" id="verifyDropzone">
+              <i class="fa-solid fa-fingerprint dropzone-icon" style="color: var(--accent-cyan);"></i>
+              <div class="dropzone-text">Drop student certificate here to verify authenticity</div>
+              <div class="dropzone-hint">Instant cryptographic SHA-256 verification against the Ethereum ledger</div>
+              <input type="file" id="verifyFileInput" class="file-input" accept=".pdf,image/png,image/jpeg,image/jpg" />
+            </div>
+
+            <!-- Verify Hash Card -->
+            <div class="hash-preview-card" id="verifyHashCard">
+              <div class="file-meta">
+                <span class="file-name" id="verifyFileName"><i class="fa-solid fa-file"></i> candidate_certificate.pdf</span>
+                <span class="file-size" id="verifyFileSize">850 KB</span>
+              </div>
+              <div class="hash-display-wrapper">
+                <span class="hash-code" id="verifyHashCode">0x...</span>
+                <button type="button" class="btn-copy" id="copyVerifyHashBtn" title="Copy Hash">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin: 1.25rem 0 0.5rem 0; font-size: 0.85rem; color: var(--text-muted);">
+            — OR QUERY DIRECTLY BY HASH DIGEST —
+          </div>
+
+          <div class="form-group" style="margin-top: 0.75rem;">
+            <input type="text" id="manualHashInput" placeholder="Enter 64-character SHA-256 hash (0x...)" />
+          </div>
+
+          <button type="button" class="btn-primary" id="btnVerifyCert" style="background: linear-gradient(135deg, var(--accent-cyan), #0284c7);">
+            <i class="fa-solid fa-magnifying-glass"></i> Verify on Blockchain
+          </button>
+        </form>
+
+        <!-- VERIFICATION RESULT: AUTHENTIC -->
+        <div class="result-card authentic" id="authenticResultCard">
+          <div class="result-header">
+            <div class="result-icon">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="result-title">
+              <h3>Authentic & Verified on Blockchain</h3>
+              <p>Cryptographic hash matches an immutable record in the smart contract.</p>
+            </div>
+          </div>
+
+          <div class="cert-details-grid">
+            <div class="detail-item">
+              <span class="detail-label"><i class="fa-solid fa-user"></i> Student Name</span>
+              <span class="detail-value" id="resStudentName">—</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label"><i class="fa-solid fa-graduation-cap"></i> Course / Degree</span>
+              <span class="detail-value" id="resCourseName">—</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label"><i class="fa-regular fa-calendar-check"></i> Issuance Timestamp</span>
+              <span class="detail-value" id="resIssueDate">—</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label"><i class="fa-solid fa-shield-virus"></i> Validity Status</span>
+              <span class="detail-value" style="color: var(--success-emerald); font-weight: 700;">Valid / Active</span>
+            </div>
+            <div class="detail-item" style="grid-column: 1 / -1;">
+              <span class="detail-label"><i class="fa-solid fa-hashtag"></i> Document SHA-256 Digest</span>
+              <span class="detail-value" id="resDocHash" style="font-family: monospace; font-size: 0.8rem; color: #a5b4fc;">—</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- VERIFICATION RESULT: INVALID / TAMPERED -->
+        <div class="result-card tampered" id="tamperedResultCard">
+          <div class="result-header">
+            <div class="result-icon">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div class="result-title">
+              <h3>Invalid / Tampered Document</h3>
+              <p>No valid cryptographic record exists on the Ethereum ledger for this document.</p>
+            </div>
+          </div>
+          <div class="tampered-msg">
+            <i class="fa-solid fa-circle-info"></i> <strong>Security Alert:</strong> The SHA-256 hash computed from this file does not match any certificate issued by the authorized university address. Even a 1-pixel change or a modified grade alters the document hash completely, preventing credential forgery.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <strong>CertiChain</strong> — 3rd Year B.Tech Mini Project in Blockchain & Distributed Systems
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repository</a>
+      <a href="https://sepolia.etherscan.io" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Sepolia Etherscan</a>
+      <a href="https://remix.ethereum.org" target="_blank"><i class="fa-solid fa-code"></i> Remix IDE</a>
+    </div>
+  </footer>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+</html>
